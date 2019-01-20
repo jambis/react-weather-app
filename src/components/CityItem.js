@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import moment from "moment";
 import _ from "lodash";
 import {
   WiDaySunny,
@@ -30,10 +29,6 @@ class CityItem extends Component {
     (Developers should ensure that a sensible default is defined, as additional values, such as hail, thunderstorm, 
     or tornado, may be defined in the future.)
     */
-    let currentTime = moment.unix(this.props.tempdata.currently.time);
-    let dayTime = moment.unix(this.props.tempdata.daily.data[0].sunriseTime);
-    let nightTime = moment.unix(this.props.tempdata.daily.data[0].sunsetTime);
-
     let iconSize = 48;
     let iconColor = "#4C4CFF";
     switch (this.props.tempdata.currently.icon) {
@@ -80,7 +75,8 @@ class CityItem extends Component {
       precipProbability,
       humidity,
       pressure,
-      visibility
+      visibility,
+      apparentTemperature
     } = this.props.tempdata.currently;
 
     return (
@@ -105,9 +101,7 @@ class CityItem extends Component {
               </div>
               <div
                 className="four wide column"
-                data-tooltip={`Feels like ${_.round(
-                  this.props.tempdata.currently.apparentTemperature
-                )}°F`}
+                data-tooltip={`Feels like ${_.round(apparentTemperature, 0)}°F`}
                 data-inverted=""
               >
                 <WiThermometer
