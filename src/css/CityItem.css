@@ -1,0 +1,7 @@
+.City-Item__Btn {
+  visibility: hidden;
+}
+
+.City-Item:hover .City-Item__Btn {
+  visibility: visible;
+}

@@ -1,46 +1,39 @@
-import React, { Component } from 'react';
-import graphhopper from '../apis/graphhopper';
-import darksky from '../apis/darksky';
-import SearchBar from './SearchBar';
-import MainDisplay from './MainDisplay';
+import React, { Component } from "react";
+import graphhopper from "../apis/graphhopper";
+import darksky from "../apis/darksky";
+import SearchBar from "./SearchBar";
+import CitiesList from "./CitiesList";
 
 class App extends Component {
-  state = {
-      location: {
-        lat: null,
-        lng: null
-      },
-      TemperatureData: null
-    }
+  state = { cities: [], tempdata: [] };
 
   componentDidUpdate = async (prevProps, prevState) => {
-    if (prevState.location !== this.state.location) {
-      let {lat, lng} = this.state.location;
-      const response = await darksky.get(`/${lat},${lng}?exclude=flags,alerts,minutely`);
-  
-      this.setState({TemperatureData: response.data});
-    }
+    if (prevState.cities !== this.state.cities) {
+      let { lat, lng } = this.state.cities[this.state.cities.length - 1].point;
+      const response = await darksky.get(
+        `/${lat},${lng}?exclude=flags,alerts,minutely`
+      );
 
+      this.setState({ tempdata: [...this.state.tempdata, response.data] });
+    }
   };
 
-  onTermSubmit = async (term) => {
-    const response = await graphhopper.get('', {
-      params: {q: term}
+  onTermSubmit = async term => {
+    const response = await graphhopper.get("", {
+      params: { q: term }
     });
 
-    let {lng, lat} = response.data.hits[0].point;
-
-    this.setState({location: {lat, lng}});
+    this.setState({ cities: [...this.state.cities, response.data.hits[0]] });
   };
 
   render() {
     return (
-      <div>
-        <SearchBar onSubmit = {this.onTermSubmit} />
-        <MainDisplay tempdata = {this.state.TemperatureData} />
+      <div className="ui container">
+        <SearchBar onSubmit={this.onTermSubmit} />
+        <CitiesList cities={this.state.cities} tempdata={this.state.tempdata} />
       </div>
     );
-  };
+  }
 }
 
 export default App;
