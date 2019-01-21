@@ -5,6 +5,7 @@ import darksky from "../apis/darksky";
 import SearchBar from "./SearchBar";
 import CitiesList from "./CitiesList";
 import HourlyList from "./HourlyList";
+import WeeklyList from "./WeeklyList";
 
 class App extends Component {
   state = { cities: [], tempdata: [] };
@@ -47,11 +48,7 @@ class App extends Component {
               )}
             />
             <Route path="/hourly/:cityname" exact component={HourlyList} />
-            <Route
-              path="/weekly/:cityname"
-              exact
-              render={() => <div>Weekly Forecast</div>}
-            />
+            <Route path="/weekly/:cityname" exact component={WeeklyList} />
           </div>
         </BrowserRouter>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import moment from "moment";
 import _ from "lodash";
+import moment from "moment";
 import {
   WiDaySunny,
   WiNightClear,
@@ -17,15 +17,13 @@ import {
   WiNightAltPartlyCloudy,
   WiDaySunnyOvercast
 } from "weather-icons-react";
-import "../css/HourlyItem.css";
 
-class HourlyItem extends Component {
+class WeeklyItem extends Component {
   renderIcon() {
-    /*
-        values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. 
+    /*values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. 
         (Developers should ensure that a sensible default is defined, as additional values, such as hail, thunderstorm, 
-        or tornado, may be defined in the future.)
-        */
+        or tornado, may be defined in the future.)*/
+
     let iconSize = 54;
     let iconColor = "#000";
     switch (this.props.tempData.icon) {
@@ -60,48 +58,28 @@ class HourlyItem extends Component {
     }
   }
 
-  getTime() {
+  getDate() {
     let timeUnix = moment.unix(this.props.tempData.time);
-    return timeUnix.format("h:mm A (ddd)");
-  }
-
-  getRainPercent() {
-    if (this.props.tempData.precipProbability === 0) {
-      return "No Rain";
-    } else {
-      return `${_.round(this.props.tempData.precipProbability, 2) * 100}%`;
-    }
-  }
-
-  setClassName() {
-    let sunsetTime = moment.unix(this.props.dailyData.sunsetTime);
-    let sunriseTime = moment.unix(this.props.dailyData.sunriseTime);
-    let currentTime = moment.unix(this.props.tempData.time);
-
-    if (_.inRange(currentTime.hour(), sunriseTime.hour(), sunsetTime.hour())) {
-      return "hour-day-bg";
-    } else {
-      return "hour-night-bg";
-    }
+    return timeUnix.format("dddd, MMMM Do YYYY");
   }
 
   renderItem() {
     return (
       <div className="ui center aligned grid">
-        <div className={`row ${this.setClassName()}`}>
+        <div className="row">
           <div className="four wide column">{this.renderIcon()}</div>
           <div className="eight wide column">
-            <h2 className="ui header">{this.getTime()}</h2>
+            <h2 className="ui header">{this.getDate()}</h2>
             <h3 className="ui header" style={{ marginTop: "0" }}>
               {this.props.tempData.summary}
             </h3>
           </div>
           <div className="four wide column">
-            <h2 className="ui header">
-              {_.round(this.props.tempData.temperature, 0)}°F
-            </h2>
+            <h3 className="ui header">
+              Hi: {_.round(this.props.tempData.apparentTemperatureHigh, 0)}°F
+            </h3>
             <h3 className="ui header" style={{ marginTop: "0" }}>
-              {this.getRainPercent()}
+              Lo: {_.round(this.props.tempData.apparentTemperatureLow, 0)}°F
             </h3>
           </div>
         </div>
@@ -110,8 +88,9 @@ class HourlyItem extends Component {
   }
 
   render() {
+    console.log(this.props);
     return <div className="item">{this.renderItem()}</div>;
   }
 }
 
-export default HourlyItem;
+export default WeeklyItem;

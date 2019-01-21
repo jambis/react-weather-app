@@ -1,23 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import HourlyItem from "./HourlyItem";
+import WeeklyItem from "./WeeklyItem";
 
-class HourlyList extends Component {
+class WeeklyList extends Component {
   renderedList() {
-    return this.props.location.state.tempdata.hourly.data
-      .slice(0, 24)
-      .map(hourlyData => {
-        return (
-          <HourlyItem
-            dailyData={this.props.location.state.tempdata.daily.data[0]}
-            tempData={hourlyData}
-          />
-        );
+    return this.props.location.state.tempdata.daily.data
+      .slice(0, 7)
+      .map(dailyData => {
+        return <WeeklyItem tempData={dailyData} />;
       });
   }
   render() {
+    console.log(this.props);
     return (
-      <div>
+      <div className="">
         <div className="ui top attached buttons">
           <Link to="/" className="ui black button">
             <i className="arrow alternate circle left icon" />
@@ -39,4 +35,4 @@ class HourlyList extends Component {
   }
 }
 
-export default HourlyList;
+export default WeeklyList;

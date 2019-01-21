@@ -78,9 +78,9 @@ class CityItem extends Component {
     let currentTime = moment.unix(this.props.tempdata.currently.time);
 
     if (_.inRange(currentTime.hour(), sunriseTime.hour(), sunsetTime.hour())) {
-      return "day-bg";
+      return "city-day-bg";
     } else {
-      return "night-bg";
+      return "city-night-bg";
     }
   }
 
@@ -187,7 +187,10 @@ class CityItem extends Component {
             24h Forecast
           </Link>
           <Link
-            to={`/weekly/${this.props.cityname}`}
+            to={{
+              pathname: `/weekly/${this.props.cityname}`,
+              state: { tempdata: this.props.tempdata }
+            }}
             className="ui black button"
           >
             <i className="calendar alternate outline icon" />

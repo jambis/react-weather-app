@@ -6,10 +6,10 @@
   visibility: visible;
 }
 
-.day-bg {
+.city-day-bg {
   background-color: #d6ab4b;
 }
 
-.night-bg {
+.city-night-bg {
   background-color: #543e93;
 }
