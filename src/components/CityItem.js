@@ -76,7 +76,8 @@ class CityItem extends Component {
       humidity,
       pressure,
       visibility,
-      apparentTemperature
+      apparentTemperature,
+      summary
     } = this.props.tempdata.currently;
 
     return (
@@ -86,7 +87,7 @@ class CityItem extends Component {
             <div className="row">
               <div
                 className="four wide column"
-                data-tooltip={this.props.tempdata.currently.summary}
+                data-tooltip={summary}
                 data-inverted=""
               >
                 {this.renderIcon()}
