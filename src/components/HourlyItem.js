@@ -74,7 +74,6 @@ class HourlyItem extends Component {
   }
 
   setClassName() {
-    console.log(this.props.dailyData);
     let sunsetTime = moment.unix(this.props.dailyData.sunsetTime);
     let sunriseTime = moment.unix(this.props.dailyData.sunriseTime);
     let currentTime = moment.unix(this.props.tempData.time);
@@ -88,7 +87,7 @@ class HourlyItem extends Component {
 
   renderItem() {
     return (
-      <div className="ui segment">
+      <div>
         <div className="ui center aligned grid">
           <div className={`row ${this.setClassName()}`}>
             <div className="four wide column">{this.renderIcon()}</div>

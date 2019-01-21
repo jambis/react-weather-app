@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import HourlyItem from "./HourlyItem";
 
 class HourlyList extends Component {
@@ -17,8 +18,24 @@ class HourlyList extends Component {
       });
   }
   render() {
-    console.log(this.props);
-    return <div className="ui relaxed divided list">{this.renderedList()}</div>;
+    return (
+      <div className="ui relaxed divided list">
+        <div className="ui top attached buttons">
+          <Link to="/" className="ui black button">
+            <i className="arrow alternate circle left icon" />
+            Back
+          </Link>
+        </div>
+        <div className="ui attached segment">{this.renderedList()}</div>
+
+        <div className="ui bottom attached buttons">
+          <Link to="/" className="ui black button">
+            <i className="arrow alternate circle left icon" />
+            Back
+          </Link>
+        </div>
+      </div>
+    );
   }
 }
 

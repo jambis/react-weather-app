@@ -5,3 +5,11 @@
 .City-Item:hover .City-Item__Btn {
   visibility: visible;
 }
+
+.day-bg {
+  background-color: #d6ab4b;
+}
+
+.night-bg {
+  background-color: #543e93;
+}

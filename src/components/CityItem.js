@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import {
   WiDaySunny,
@@ -31,7 +32,7 @@ class CityItem extends Component {
     or tornado, may be defined in the future.)
     */
     let iconSize = 48;
-    let iconColor = "#4C4CFF";
+    let iconColor = "#000";
     switch (this.props.tempdata.currently.icon) {
       case "clear-day":
         return <WiDaySunny size={iconSize} color={iconColor} />;
@@ -69,6 +70,19 @@ class CityItem extends Component {
     let newDesc = _.replace(oldDesc, /-/g, " ");
     return _.startCase(newDesc);
   }
+  setClassName() {
+    let sunsetTime = moment.unix(this.props.tempdata.daily.data[0].sunsetTime);
+    let sunriseTime = moment.unix(
+      this.props.tempdata.daily.data[0].sunriseTime
+    );
+    let currentTime = moment.unix(this.props.tempdata.currently.time);
+
+    if (_.inRange(currentTime.hour(), sunriseTime.hour(), sunsetTime.hour())) {
+      return "day-bg";
+    } else {
+      return "night-bg";
+    }
+  }
 
   renderItem() {
     let {
@@ -84,7 +98,7 @@ class CityItem extends Component {
     return (
       <div className="City-Item">
         <div className="ui attached segment">
-          <div className="ui center aligned grid">
+          <div className={`ui center aligned grid ${this.setClassName()}`}>
             <div className="row">
               <div
                 className="four wide column"
@@ -108,7 +122,7 @@ class CityItem extends Component {
               >
                 <WiThermometer
                   size={48}
-                  color="#4C4CFF"
+                  color="#000"
                   style={{ marginTop: "0" }}
                 />
                 <h1 className="ui header" style={{ marginTop: "0" }}>
@@ -123,7 +137,7 @@ class CityItem extends Component {
                 data-tooltip="Chance of rain"
                 data-inverted=""
               >
-                <WiUmbrella size={48} color="#4C4CFF" />
+                <WiUmbrella size={48} color="#000" />
                 <h3 className="ui header" style={{ marginTop: "0" }}>
                   {_.round(precipProbability, 2) * 100}%
                 </h3>
@@ -133,7 +147,7 @@ class CityItem extends Component {
                 data-tooltip="Humidity percentage."
                 data-inverted=""
               >
-                <WiHumidity size={48} color="#4C4CFF" />
+                <WiHumidity size={48} color="#000" />
                 <h3 className="ui header" style={{ marginTop: "0" }}>
                   {_.round(humidity, 2) * 100}%
                 </h3>
@@ -143,7 +157,7 @@ class CityItem extends Component {
                 data-tooltip="Pressure at sea level in millibars"
                 data-inverted=""
               >
-                <WiBarometer size={48} color="#4C4CFF" />
+                <WiBarometer size={48} color="#000" />
                 <h3 className="ui header" style={{ marginTop: "0" }}>
                   {pressure} mbar
                 </h3>
@@ -153,7 +167,7 @@ class CityItem extends Component {
                 data-tooltip="Visibility in miles."
                 data-inverted=""
               >
-                <WiFog size={48} color="#4C4CFF" />
+                <WiFog size={48} color="#000" />
                 <h3 className="ui header" style={{ marginTop: "0" }}>
                   {visibility} mi
                 </h3>
@@ -167,19 +181,19 @@ class CityItem extends Component {
               pathname: `/hourly/${this.props.cityname}`,
               state: { tempdata: this.props.tempdata }
             }}
-            className="ui inverted blue button"
+            className="ui black button"
           >
             <i className="clock outline icon" />
             24h Forecast
           </Link>
           <Link
             to={`/weekly/${this.props.cityname}`}
-            className="ui inverted blue button"
+            className="ui black button"
           >
             <i className="calendar alternate outline icon" />
             Weekly Forecast
           </Link>
-          <Link to="/" className="ui inverted blue button">
+          <Link to="/" className="ui black button">
             <i className="close icon" />
             Remove
           </Link>
@@ -189,7 +203,6 @@ class CityItem extends Component {
   }
 
   render() {
-    console.log(this.props);
     if (this.props.tempdata) {
       return this.renderItem();
     } else {
