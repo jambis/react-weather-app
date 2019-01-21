@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import graphhopper from "../apis/graphhopper";
 import darksky from "../apis/darksky";
 import SearchBar from "./SearchBar";
@@ -29,8 +30,33 @@ class App extends Component {
   render() {
     return (
       <div className="ui container">
-        <SearchBar onSubmit={this.onTermSubmit} />
-        <CitiesList cities={this.state.cities} tempdata={this.state.tempdata} />
+        <BrowserRouter>
+          <div>
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <div>
+                  <SearchBar onSubmit={this.onTermSubmit} />
+                  <CitiesList
+                    cities={this.state.cities}
+                    tempdata={this.state.tempdata}
+                  />
+                </div>
+              )}
+            />
+            <Route
+              path="/hourly/:cityname"
+              exact
+              render={() => <div>Hourly Forecast</div>}
+            />
+            <Route
+              path="/weekly/:cityname"
+              exact
+              render={() => <div>Weekly Forecast</div>}
+            />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
