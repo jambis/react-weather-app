@@ -4,6 +4,7 @@ import graphhopper from "../apis/graphhopper";
 import darksky from "../apis/darksky";
 import SearchBar from "./SearchBar";
 import CitiesList from "./CitiesList";
+import HourlyList from "./HourlyList";
 
 class App extends Component {
   state = { cities: [], tempdata: [] };
@@ -45,11 +46,7 @@ class App extends Component {
                 </div>
               )}
             />
-            <Route
-              path="/hourly/:cityname"
-              exact
-              render={() => <div>Hourly Forecast</div>}
-            />
+            <Route path="/hourly/:cityname" exact component={HourlyList} />
             <Route
               path="/weekly/:cityname"
               exact

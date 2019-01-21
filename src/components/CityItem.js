@@ -163,7 +163,10 @@ class CityItem extends Component {
         </div>
         <div className="ui three bottom attached buttons City-Item__Btn">
           <Link
-            to={`/hourly/${this.props.cityname}`}
+            to={{
+              pathname: `/hourly/${this.props.cityname}`,
+              state: { tempdata: this.props.tempdata }
+            }}
             className="ui inverted blue button"
           >
             <i className="clock outline icon" />
@@ -186,13 +189,14 @@ class CityItem extends Component {
   }
 
   render() {
+    console.log(this.props);
     if (this.props.tempdata) {
       return this.renderItem();
     } else {
       return (
-        <div class="ui segment">
-          <div class="ui active inverted dimmer">
-            <div class="ui massive text loader">
+        <div className="ui segment">
+          <div className="ui active inverted dimmer">
+            <div className="ui massive text loader">
               Fetching data for {this.props.cityname}
             </div>
           </div>

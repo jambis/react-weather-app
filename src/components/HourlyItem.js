@@ -17,6 +17,7 @@ import {
   WiNightAltPartlyCloudy,
   WiDaySunnyOvercast
 } from "weather-icons-react";
+import "../css/HourlyItem.css";
 
 class HourlyItem extends Component {
   renderIcon() {
@@ -25,9 +26,9 @@ class HourlyItem extends Component {
         (Developers should ensure that a sensible default is defined, as additional values, such as hail, thunderstorm, 
         or tornado, may be defined in the future.)
         */
-    let iconSize = 48;
-    let iconColor = "#4C4CFF";
-    switch (this.props.tempdata.icon) {
+    let iconSize = 54;
+    let iconColor = "#000";
+    switch (this.props.tempData.icon) {
       case "clear-day":
         return <WiDaySunny size={iconSize} color={iconColor} />;
       case "clear-night":
@@ -60,27 +61,52 @@ class HourlyItem extends Component {
   }
 
   getTime() {
-    let timeUnix = moment.unix(this.props.tempdata.time);
+    let timeUnix = moment.unix(this.props.tempData.time);
     return timeUnix.format("h:mm A (ddd)");
   }
 
   getRainPercent() {
-    if (this.props.tempdata.precipProbability === 0) {
+    if (this.props.tempData.precipProbability === 0) {
       return "No Rain";
     } else {
-      return `${_.round(this.props.tempdata.precipProbability, 2) * 100}%`;
+      return `${_.round(this.props.tempData.precipProbability, 2) * 100}%`;
+    }
+  }
+
+  setClassName() {
+    console.log(this.props.dailyData);
+    let sunsetTime = moment.unix(this.props.dailyData.sunsetTime);
+    let sunriseTime = moment.unix(this.props.dailyData.sunriseTime);
+    let currentTime = moment.unix(this.props.tempData.time);
+
+    if (_.inRange(currentTime.hour(), sunriseTime.hour(), sunsetTime.hour())) {
+      return "day-bg";
+    } else {
+      return "night-bg";
     }
   }
 
   renderItem() {
     return (
-      <div className="ui grid">
-        <div className="four column wide">{this.renderIcon()}</div>
-        <div className="eight column wide">
-          {this.getTime()} {"\n"} {this.props.tempdata.summary}
-        </div>
-        <div className="four column wide">
-          {this.props.tempdata.temperature} {"\n"} {this.getRainPercent()}
+      <div className="ui segment">
+        <div className="ui center aligned grid">
+          <div className={`row ${this.setClassName()}`}>
+            <div className="four wide column">{this.renderIcon()}</div>
+            <div className="eight wide column">
+              <h2 className="ui header">{this.getTime()}</h2>
+              <h3 className="ui header" style={{ marginTop: "0" }}>
+                {this.props.tempData.summary}
+              </h3>
+            </div>
+            <div className="four wide column">
+              <h2 className="ui header">
+                {_.round(this.props.tempData.temperature, 0)}°F
+              </h2>
+              <h3 className="ui header" style={{ marginTop: "0" }}>
+                {this.getRainPercent()}
+              </h3>
+            </div>
+          </div>
         </div>
       </div>
     );
