@@ -16,7 +16,6 @@ class App extends Component {
       const response = await darksky.get(
         `/${lat},${lng}?exclude=flags,alerts,minutely`
       );
-
       this.setState({ tempdata: [...this.state.tempdata, response.data] });
     }
   };

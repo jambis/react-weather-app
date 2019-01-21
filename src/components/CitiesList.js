@@ -9,13 +9,14 @@ class CitiesList extends Component {
       return (
         <CityItem
           key={city.osm_id}
-          cityname={city.name}
+          cityname={city}
+          onSubmit={this.props.onSubmit}
           tempdata={this.props.tempdata[i - 1]}
         />
       );
     });
   }
-
+  //
   render() {
     return (
       <div className="ui relaxed divided list">

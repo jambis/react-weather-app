@@ -88,7 +88,6 @@ class WeeklyItem extends Component {
   }
 
   render() {
-    console.log(this.props);
     return <div className="item">{this.renderItem()}</div>;
   }
 }

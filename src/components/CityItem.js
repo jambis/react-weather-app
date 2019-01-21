@@ -112,7 +112,7 @@ class CityItem extends Component {
               </div>
               <div className="eight wide column">
                 <h1 className="ui header" style={{ marginTop: "1em" }}>
-                  {this.props.cityname}
+                  {this.props.cityname.name}
                 </h1>
               </div>
               <div
@@ -175,10 +175,10 @@ class CityItem extends Component {
             </div>
           </div>
         </div>
-        <div className="ui three bottom attached buttons City-Item__Btn">
+        <div className="ui two bottom attached buttons City-Item__Btn">
           <Link
             to={{
-              pathname: `/hourly/${this.props.cityname}`,
+              pathname: `/hourly/${this.props.cityname.name}`,
               state: { tempdata: this.props.tempdata }
             }}
             className="ui black button"
@@ -188,17 +188,13 @@ class CityItem extends Component {
           </Link>
           <Link
             to={{
-              pathname: `/weekly/${this.props.cityname}`,
+              pathname: `/weekly/${this.props.cityname.name}`,
               state: { tempdata: this.props.tempdata }
             }}
             className="ui black button"
           >
             <i className="calendar alternate outline icon" />
             Weekly Forecast
-          </Link>
-          <Link to="/" className="ui black button">
-            <i className="close icon" />
-            Remove
           </Link>
         </div>
       </div>
@@ -213,7 +209,7 @@ class CityItem extends Component {
         <div className="ui segment">
           <div className="ui active inverted dimmer">
             <div className="ui massive text loader">
-              Fetching data for {this.props.cityname}
+              Fetching data for {this.props.cityname.name}
             </div>
           </div>
           <p>-</p>
