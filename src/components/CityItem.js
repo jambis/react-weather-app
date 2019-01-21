@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import {
   WiDaySunny,
   WiNightClear,
@@ -76,7 +77,8 @@ class CityItem extends Component {
       humidity,
       pressure,
       visibility,
-      apparentTemperature
+      apparentTemperature,
+      summary
     } = this.props.tempdata.currently;
 
     return (
@@ -86,7 +88,7 @@ class CityItem extends Component {
             <div className="row">
               <div
                 className="four wide column"
-                data-tooltip={this.props.tempdata.currently.summary}
+                data-tooltip={summary}
                 data-inverted=""
               >
                 {this.renderIcon()}
@@ -160,18 +162,24 @@ class CityItem extends Component {
           </div>
         </div>
         <div className="ui three bottom attached buttons City-Item__Btn">
-          <button className="ui inverted blue button">
+          <Link
+            to={`/hourly/${this.props.cityname}`}
+            className="ui inverted blue button"
+          >
             <i className="clock outline icon" />
             24h Forecast
-          </button>
-          <button className="ui inverted blue button">
+          </Link>
+          <Link
+            to={`/weekly/${this.props.cityname}`}
+            className="ui inverted blue button"
+          >
             <i className="calendar alternate outline icon" />
-            Week Forecast
-          </button>
-          <button className="ui inverted blue button">
+            Weekly Forecast
+          </Link>
+          <Link to="/" className="ui inverted blue button">
             <i className="close icon" />
             Remove
-          </button>
+          </Link>
         </div>
       </div>
     );
