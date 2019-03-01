@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import _ from "lodash";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { deleteCity } from "../actions";
 import {
   WiDaySunny,
   WiNightClear,
@@ -175,7 +177,7 @@ class CityItem extends Component {
             </div>
           </div>
         </div>
-        <div className="ui two bottom attached buttons City-Item__Btn">
+        <div className="ui three bottom attached buttons City-Item__Btn">
           <Link
             to={{
               pathname: `/hourly/${this.props.cityname.name}`,
@@ -196,10 +198,18 @@ class CityItem extends Component {
             <i className="calendar alternate outline icon" />
             Weekly Forecast
           </Link>
+          <button onClick={this.deleteItem} className="ui black button">
+            <i className="trash alternate outline icon" />
+            Remove City
+          </button>
         </div>
       </div>
     );
   }
+
+  deleteItem = () => {
+    this.props.deleteCity(this.props.datakey);
+  };
 
   render() {
     if (this.props.tempdata) {
@@ -223,4 +233,7 @@ class CityItem extends Component {
   }
 }
 
-export default CityItem;
+export default connect(
+  null,
+  { deleteCity }
+)(CityItem);

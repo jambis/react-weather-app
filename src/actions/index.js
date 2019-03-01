@@ -24,3 +24,7 @@ export const fetchWeather = (lat, lng) => async dispatch => {
 
   dispatch({ type: "FETCH_WEATHER", payload: response.data });
 };
+
+export const deleteCity = index => {
+  return { type: "DELETE_CITY", payload: index };
+};

@@ -8,6 +8,7 @@ class CitiesList extends Component {
       return (
         <CityItem
           key={i}
+          datakey={i}
           cityname={city}
           tempdata={this.props.weather.tempdata[i]}
         />

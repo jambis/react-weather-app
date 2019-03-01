@@ -6,9 +6,10 @@ class HourlyList extends Component {
   renderedList() {
     return this.props.location.state.tempdata.hourly.data
       .slice(0, 24)
-      .map(hourlyData => {
+      .map((hourlyData, i) => {
         return (
           <HourlyItem
+            key={i}
             dailyData={this.props.location.state.tempdata.daily.data[0]}
             tempData={hourlyData}
           />

@@ -6,8 +6,8 @@ class WeeklyList extends Component {
   renderedList() {
     return this.props.location.state.tempdata.daily.data
       .slice(0, 7)
-      .map(dailyData => {
-        return <WeeklyItem tempData={dailyData} />;
+      .map((dailyData, i) => {
+        return <WeeklyItem key={i} tempData={dailyData} />;
       });
   }
   render() {

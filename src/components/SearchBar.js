@@ -5,7 +5,7 @@ class SearchBar extends Component {
   state = { term: "" };
 
   componentDidUpdate = async (prevProps, prevState) => {
-    if (prevProps.weather.cities !== this.props.weather.cities) {
+    if (prevProps.weather.cities < this.props.weather.cities) {
       let { lat, lng } = this.props.weather.cities[
         this.props.weather.cities.length - 1
       ].point;
