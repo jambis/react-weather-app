@@ -1,3 +1,4 @@
+//TODO: Switch to http://www.geonames.org/ api
 import axios from "axios";
 
 const KEY = process.env.REACT_APP_GH_APIKEY;

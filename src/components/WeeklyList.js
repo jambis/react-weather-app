@@ -11,7 +11,6 @@ class WeeklyList extends Component {
       });
   }
   render() {
-    console.log(this.props);
     return (
       <div className="">
         <div className="ui top attached buttons">

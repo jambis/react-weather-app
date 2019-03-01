@@ -1,22 +1,20 @@
 import React, { Component } from "react";
 import CityItem from "./CityItem";
+import { connect } from "react-redux";
 
 class CitiesList extends Component {
   renderedList() {
-    let i = 0;
-    return this.props.cities.map(city => {
-      i++;
+    return this.props.weather.cities.map((city, i) => {
       return (
         <CityItem
-          key={city.osm_id}
+          key={i}
           cityname={city}
-          onSubmit={this.props.onSubmit}
-          tempdata={this.props.tempdata[i - 1]}
+          tempdata={this.props.weather.tempdata[i]}
         />
       );
     });
   }
-  //
+
   render() {
     return (
       <div className="ui relaxed divided list">
@@ -26,4 +24,7 @@ class CitiesList extends Component {
   }
 }
 
-export default CitiesList;
+const mapStateToProps = state => {
+  return { weather: state.weather };
+};
+export default connect(mapStateToProps)(CitiesList);
