@@ -12,8 +12,8 @@ class WeeklyList extends Component {
   }
   render() {
     return (
-      <div className="">
-        <div className="ui top attached buttons">
+      <>
+        <div className="ui top attached buttons" style={{ marginTop: "100px" }}>
           <Link to="/" className="ui black button">
             <i className="arrow alternate circle left icon" />
             Back
@@ -29,7 +29,7 @@ class WeeklyList extends Component {
             Back
           </Link>
         </div>
-      </div>
+      </>
     );
   }
 }

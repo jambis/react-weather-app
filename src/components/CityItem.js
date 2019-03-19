@@ -24,7 +24,7 @@ import {
   WiBarometer,
   WiThermometer
 } from "weather-icons-react";
-import "../css/CityItem.css";
+import "../css/CityItem.scss";
 
 class CityItem extends Component {
   renderIcon() {
@@ -98,7 +98,7 @@ class CityItem extends Component {
     } = this.props.tempdata.currently;
 
     return (
-      <div className="City-Item">
+      <div className="City-Item City-Item--top-margin">
         <div className="ui attached segment">
           <div className={`ui center aligned grid ${this.setClassName()}`}>
             <div className="row">
@@ -141,7 +141,7 @@ class CityItem extends Component {
               >
                 <WiUmbrella size={48} color="#000" />
                 <h3 className="ui header" style={{ marginTop: "0" }}>
-                  {_.round(precipProbability, 2) * 100}%
+                  {_.round(precipProbability * 100, 2)}%
                 </h3>
               </div>
               <div
@@ -151,7 +151,7 @@ class CityItem extends Component {
               >
                 <WiHumidity size={48} color="#000" />
                 <h3 className="ui header" style={{ marginTop: "0" }}>
-                  {_.round(humidity, 2) * 100}%
+                  {_.round(humidity * 100, 2)}%
                 </h3>
               </div>
               <div
@@ -216,7 +216,7 @@ class CityItem extends Component {
       return this.renderItem();
     } else {
       return (
-        <div className="ui segment">
+        <div className="ui segment City-Item--top-margin">
           <div className="ui active inverted dimmer">
             <div className="ui massive text loader">
               Fetching data for {this.props.cityname.name}

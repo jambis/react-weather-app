@@ -17,7 +17,7 @@ import {
   WiNightAltPartlyCloudy,
   WiDaySunnyOvercast
 } from "weather-icons-react";
-import "../css/HourlyItem.css";
+import "../css/HourlyItem.scss";
 
 class HourlyItem extends Component {
   renderIcon() {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CityItem from "./CityItem";
 import { connect } from "react-redux";
+import "../css/CityList.scss";
 
 class CitiesList extends Component {
   renderedList() {
@@ -17,11 +18,7 @@ class CitiesList extends Component {
   }
 
   render() {
-    return (
-      <div className="ui relaxed divided list">
-        <div>{this.renderedList()}</div>
-      </div>
-    );
+    return <div className="ui relaxed divided list">{this.renderedList()}</div>;
   }
 }
 

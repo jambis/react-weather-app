@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { searchLocation, fetchWeather } from "../actions";
+import "../css/SearchBar.scss";
 class SearchBar extends Component {
   state = { term: "" };
 
@@ -26,15 +27,14 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="search-bar ui segment">
-        <form className="ui form" onSubmit={this.onFormSubmit}>
-          <input
-            placeholder="Search for a city..."
-            onChange={this.onInputChange}
-            value={this.state.term}
-          />
-        </form>
-      </div>
+      <form className="ui form" onSubmit={this.onFormSubmit}>
+        <input
+          id="search"
+          placeholder="Search for a city..."
+          onChange={this.onInputChange}
+          value={this.state.term}
+        />
+      </form>
     );
   }
 }
