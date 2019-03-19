@@ -1,0 +1,25 @@
+/* Mixin media query at different break points resize input
+    1200 -> 800px xlarge
+    1199px -> 600px large
+    991px -> 450px medium
+    767px -> 350px s
+    479px -> 180px xs
+*/
+@import "./mixins.scss";
+
+#search {
+  width: 200px;
+
+  @include atSmall {
+    width: 350px;
+  }
+  @include atMedium {
+    width: 476.34px;
+  }
+  @include atLarge {
+    width: 686.34px;
+  }
+  @include atXLarge {
+    width: 880.34px;
+  }
+}

@@ -1,0 +1,68 @@
+.City-Item__Btn {
+  visibility: hidden;
+}
+
+.City-Item:hover .City-Item__Btn {
+  visibility: visible;
+}
+
+.City-Item--top-margin:first-child {
+  margin-top: 100px !important;
+}
+
+.city-day-bg {
+  background: rgb(240, 233, 184); /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    rgb(240, 233, 184) 0%,
+    rgb(255, 248, 115) 35%,
+    rgb(255, 248, 115) 65%,
+    rgb(245, 244, 169) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgb(240, 233, 184) 0%,
+    rgb(255, 248, 115) 35%,
+    rgb(255, 248, 115) 65%,
+    rgb(245, 244, 169) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    rgb(240, 233, 184) 0%,
+    rgb(255, 248, 115) 35%,
+    rgb(255, 248, 115) 65%,
+    rgb(245, 244, 169) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0e9b8', endColorstr='#f5f4a9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background-blend-mode: screen;
+}
+
+.city-night-bg {
+  background: rgb(125, 122, 222); /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    rgb(125, 122, 222) 0%,
+    rgb(80, 55, 191) 35%,
+    rgb(80, 55, 191) 65%,
+    rgb(80, 55, 191) 65%,
+    rgb(125, 122, 222) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgb(125, 122, 222) 0%,
+    rgb(80, 55, 191) 35%,
+    rgb(80, 55, 191) 65%,
+    rgb(80, 55, 191) 65%,
+    rgb(125, 122, 222) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    rgb(125, 122, 222) 0%,
+    rgb(80, 55, 191) 35%,
+    rgb(80, 55, 191) 65%,
+    rgb(80, 55, 191) 65%,
+    rgb(125, 122, 222) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7ade', endColorstr='#7d7ade',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background-blend-mode: screen;
+}

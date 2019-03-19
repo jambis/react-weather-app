@@ -1,0 +1,29 @@
+/* Mixin media query at different break points resize input
+    1200 -> 800px xlarge
+    1199px -> 600px large
+    991px -> 450px medium
+    767px -> 350px s
+    479px -> 180px xs
+*/
+@mixin atSmall() {
+  @media (min-width: 740px) {
+    @content;
+  }
+}
+
+@mixin atMedium() {
+  @media (min-width: 741px) and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin atLarge() {
+  @media (min-width: 992px) and (max-width: 1199px) {
+    @content;
+  }
+}
+@mixin atXLarge() {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
